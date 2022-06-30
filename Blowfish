@@ -1,0 +1,26 @@
+import javax.crypto.*;
+import java.util.*;
+//import javax.swing.JoptionPane;
+public class blowfishsree 
+{
+	public static void main(String []args)throws Exception
+	{
+		KeyGenerator kg=KeyGenerator.getInstance("BLOWFISH");
+		SecretKey sk=kg.generateKey();
+		Cipher c=Cipher.getInstance("BLOWFISH");
+		c.init(Cipher.ENCRYPT_MODE,sk);
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the words to be encrypted:");
+		String inputtext=sc.nextLine();
+		//String inputtext=JoptionPane.showInputDialog("Input your message");
+		byte []encrypt=c.doFinal(inputtext.getBytes());
+		c.init(Cipher.DECRYPT_MODE,sk);
+		byte []decrypt=c.doFinal(encrypt);
+		System.out.println("Words after encryption:"+new String(encrypt));
+		System.out.println("Words after decryption:"+new String(decrypt));
+		/*JoptionPane.showMessageDialog(JoptionPane.getRootFrame(),"\n Encrypted text:"+new String(encrypt)+"\n"+
+		 * "\n Decrypted text:"+new String(decrypt));
+		 * System.exit(0);
+		 */
+	}
+}
