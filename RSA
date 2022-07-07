@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+public class sreersa 
+{
+	public static void main(String []args)
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter P:");
+		int p=sc.nextInt();
+		System.out.println("Enter Q:");
+		int q=sc.nextInt();
+		int e=0;
+		int d=0;
+		int n=p*q;
+		int phi=(p-1)*(q-1);
+		for(int i=2;i<phi;i++)
+		{
+			if (gcd(i,phi)==1)
+			{
+				if(i==p||i==q)
+					continue;
+				else
+				{
+					e=i;
+					break;
+				}
+			}
+		}
+		for(int j=1;;j++)
+		{
+			if((e*j)%phi==1)
+			{
+				d=j;
+				break;
+			}
+		}
+		System.out.println("Public Key:{"+e+","+n+"}");
+		System.out.println("Private Key:{"+d+","+n+"}");
+	}
+	public static int gcd(int a,int b)
+	{
+		if(b==0)
+			return a;
+		else
+			return gcd(b,a%b);
+	}
+}
